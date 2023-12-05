@@ -31,7 +31,9 @@ jobs:
           git commit -m "json格式美化|Unicode自动转换" -a
           git commit -m "Add new JSON files" || echo "No changes to commit"
           git push
-          
+        env:
+          REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
+        
       - name: Telegram通知
         run: |
           curl "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
