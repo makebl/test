@@ -1,44 +1,43 @@
-name: ipa
-
+name: 书源
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 */20 * * *'
+    - cron: "0 10 */3 * *"
 
 jobs:
-  sync_and_run:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
+        with:
+         python-version: "3.10"
 
-    - name: Set up Git
-      run: |
-        git config --local user.email "${{ secrets.USER_EMAIL }}"
-        git config --local user.name "${{ secrets.USER_NAME }}"
+      - name: 安装依赖项
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests json
 
+      - name: 运行脚本
+        run: python 1.py
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
-
-    - name: Pull remote file
-      run: |
-        curl -o apps.json https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/apps.json
-      working-directory: ${{ github.workspace }}
-
-    - name: Debug Script
-      run: |
-        ls -al  # 列出当前目录下的文件，确保文件存在
-        cat test.json  # 输出 test.json 内容
-        cat apps.json  # 输出 apps.json 内容
- 
-        python 1.py
-
-        cat merged_library.json
-      working-directory: ${{ github.workspace }}
-
-    - name: Telegram通知
-      run: |
-        curl "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+      - name: 提交文件
+        run: |
+          git config --local user.email "${{ secrets.USER_EMAIL }}"
+          git config --local user.name "${{ secrets.USER_NAME }}"
+          #echo "https://github.com/${{ github.repository }}:${{ secrets.REPO_TOKEN }}" > .git-credentials
+          git add .
+          git commit -m "书源|自动更新" -a
+          git commit -m "Add new JSON files" || echo "No changes to commit"
+          git push
+          
+      - name: Telegram通知
+        run: |
+          curl "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
           -d "chat_id=${{ secrets.TELEGRAM_CHAT_ID }}" \
-          -d "text=ipa商店更新合并完成!分支：${{ github.ref }}"
-      working-directory: ${{ github.workspace }}
+          -d "text=3.0阅读书源更新合并完成!分支：${{ github.ref }}"
