@@ -13,7 +13,7 @@
             "developerName": "",
             "localizedDescription": "",
             "iconURL": "https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/icons/net.whatsapp.WhatsApp.png"
-            ],
+            },
         {
             "name": "微信多开3",
             "bundleIdentifier": "com.tencent.xin_3",
@@ -26,7 +26,6 @@
             "iconURL": "https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/icons/net.whatsapp.WhatsApp.png"
                 }
                 }
-            ]
         }
     ]
 }
