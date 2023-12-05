@@ -1,6 +1,6 @@
 {
-    "name": "makebl IPA Library",
-    "identifier": "com.quarksources.quantumsource",
+    "name": "dahuilang IPA Library",
+    "identifier": "com.dahuilang",
     "sourceURL": "https://raw.githubusercontent.com/makebl/test/main/test.json",
     "apps": [
         {
