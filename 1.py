@@ -34,5 +34,13 @@ def main():
     with open('merged_library.json', 'w', encoding='utf-8') as merged_file:
         json.dump(merged_library, merged_file, ensure_ascii=False, indent=4)
 
+    # Output information to a file
+    with open('output_info.txt', 'w', encoding='utf-8') as output_info:
+        output_info.write('Merged library successfully.')
+
+    # Add debug output to the console
+    print('Merged library successfully.')
+    print(f'Contents of merged_library: {merged_library}')
+
 if __name__ == "__main__":
     main()
