@@ -18,19 +18,20 @@ jobs:
         git config --local user.email "${{ secrets.USER_EMAIL }}"
         git config --local user.name "${{ secrets.USER_NAME }}"
 
-    - name: Check if Apps.json exists
+    - name: Check if Apps.json is empty
       run: |
-        if [ ! -f apps.json ]; then
-          touch apps.json
+        if [ ! -s apps.json ]; then
+          # The file is empty or does not exist
+          echo "Initializing Apps.json"
+          echo '{}' > apps.json
           git add apps.json
           git commit -m "Initialize Apps.json"
           git push
         else
-          curl -sSfLJO https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/apps.json
-          git add apps.json
-          git commit -m "ipa商店更新合并"
-          git push
+          # The file is not empty
+          echo "Apps.json already exists, skipping initialization"
         fi
+
 
     - name: Run Python Script
       run: |
