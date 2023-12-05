@@ -1,6 +1,6 @@
 {
     "name": "makebl IPA Library",
-    "identifier": "xyz.hieuddo.ipalibrary",
+    "identifier": "com.example.app",
     "sourceURL": "https://raw.githubusercontent.com/makebl/test/main/test.json",
     "apps": [
         {
