@@ -1,14 +1,26 @@
 import json
 
-def merge_json(file1, file2, output_file):
-    with open(file1, 'r', encoding='utf-8') as f1, open(file2, 'r', encoding='utf-8') as f2:
-        json1 = json.load(f1)
-        json2 = json.load(f2)
+def merge_libraries(library1, library2):
+    merged_data = {
+        "libraries": [library1, library2]
+    }
+    return merged_data
 
-    merged_json = {**json1, **json2}
+def main():
+    # 读取第一个 JSON 文件
+    with open("test.json", "r", encoding="utf-8") as file1:
+        library1 = json.load(file1)
 
-    with open(output_file, 'w', encoding='utf-8') as output_f:
-        json.dump(merged_json, output_f, ensure_ascii=False, indent=4)
+    # 读取第二个 JSON 文件
+    with open("apps.json", "r", encoding="utf-8") as file2:
+        library2 = json.load(file2)
 
-# 使用示例
-merge_json('test.json', 'apps.json', 'output.json')
+    # 合并两个 IPA 库
+    merged_library = merge_libraries(library1, library2)
+
+    # 将合并后的数据写入新的 JSON 文件
+    with open("merged_library.json", "w", encoding="utf-8") as output_file:
+        json.dump(merged_library, output_file, ensure_ascii=False, indent=4)
+
+if __name__ == "__main__":
+    main()
