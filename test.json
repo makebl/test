@@ -1,4 +1,8 @@
 [
+    "name": "swaggyP36000 IPA Library",
+    "identifier": "xyz.hieuddo.ipalibrary",
+    "sourceURL": "https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/apps.json",
+    "apps": [
 {
             "name": "微信多开1",
             "bundleIdentifier": "com.tencent.xin_1",
