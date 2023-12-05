@@ -18,19 +18,7 @@ jobs:
         git config --local user.email "${{ secrets.USER_EMAIL }}"
         git config --local user.name "${{ secrets.USER_NAME }}"
 
-    - name: Check if Apps.json is empty
-      run: |
-        if [ ! -s apps.json ]; then
-          # The file is empty or does not exist
-          echo "Initializing Apps.json"
-          echo '{}' > apps.json
-          git add apps.json
-          git commit -m "Initialize Apps.json"
-          git push
-        else
-          # The file is not empty
-          echo "Apps.json already exists, skipping initialization"
-        fi
+
 
     - name: Pull remote file
       run: |
