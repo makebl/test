@@ -1,41 +1,47 @@
-name: 美化
+name: CI
+
 on:
-  workflow_dispatch:
-  #schedule:
-    #- cron: "0 10 */3 * *"
+  push:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v3
-        with:
-         python-version: "3.10"
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-      - name: 安装依赖项
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.10"
+
+      - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests bs4
+          pip install -r requirements.txt  # 替换成你的项目依赖
 
-      - name: 运行脚本
-        run: python 1.py
-
-      - name: 提交文件
+      - name: Run Tests
         run: |
-          git config --local user.email "${{ secrets.USER_EMAIL }}"
-          git config --local user.name "${{ secrets.USER_NAME }}"
+          python -m unittest discover
+
+      - name: Configure Git
+        run: |
+          git config user.email "${{ secrets.USER_EMAIL }}"
+          git config user.name "${{ secrets.USER_NAME }}"
+
+      - name: Commit and Push Changes
+        run: |
           git add .
-          git commit -m "json格式美化|Unicode自动转换" -a
-          git commit -m "Add new JSON files" || echo "No changes to commit"
-          git push
-        env:
-          REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
-        
-      - name: Telegram通知
-        run: |
-          curl "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
-          -d "chat_id=${{ secrets.TELEGRAM_CHAT_ID }}" \
-          -d "text=书源格式美化完成!分支：${{ github.ref }}"
+          git commit -m "Run tests and update results" -a
+          git push origin main  # 替换成你的目标分支
+
+      - name: Notify on Success
+        if: success()
+        run: echo "Tests passed successfully!"
+
+      - name: Notify on Failure
+        if: failure()
+        run: echo "Tests failed! Please check the logs for details."
