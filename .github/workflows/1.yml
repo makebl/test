@@ -1,44 +1,43 @@
-name: 美化
+name: ipa
+
 on:
   workflow_dispatch:
-  #schedule:
-    #- cron: "0 10 */3 * *"
+  schedule:
+    - cron: '0 */20 * * *'
 
 jobs:
-  build:
+  sync_and_run:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v3
-        with:
-         python-version: "3.10"
+    - name: Checkout Repository
+      uses: actions/checkout@v2
 
-      - name: 安装依赖项
-        run: |
-          python -m pip install --upgrade pip
-          pip install requests bs4
+    - name: Set up Git
+      run: |
+        git config --local user.email "${{ secrets.USER_EMAIL }}"
+        git config --local user.name "${{ secrets.USER_NAME }}"
 
-      - name: Run Tests
-        run: |
-          python -m unittest discover
+    - name: Check if Apps.json exists
+      run: |
+        if [ ! -f apps.json ]; then
+          touch apps.json
+          git add apps.json
+          git commit -m "Initialize Apps.json"
+          git push
+        else
+          curl -sSfLJO https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/apps.json
+          git add apps.json
+          git commit -m "ipa商店更新合并"
+          git push
+        fi
 
-      - name: Configure Git
-        run: |
-          git config user.email "${{ secrets.USER_EMAIL }}"
-          git config user.name "${{ secrets.USER_NAME }}"
-
-      - name: Commit and Push Changes
-        run: |
-          git add .
-          git commit -m "Run tests and update results" -a
-          git push origin main  # 替换成你的目标分支
-
-      - name: Notify on Success
-        if: success()
-        run: echo "Tests passed successfully!"
-
-      - name: Notify on Failure
-        if: failure()
-        run: echo "Tests failed! Please check the logs for details."
+    - name: Run Python Script
+      run: |
+        python ipa.py
+        
+    - name: Telegram通知
+      run: |
+          curl "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+          -d "chat_id=${{ secrets.TELEGRAM_CHAT_ID }}" \
+          -d "text=ipa商店更新合并完成!分支：${{ github.ref }}"
