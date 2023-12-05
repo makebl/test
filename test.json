@@ -1,51 +1,30 @@
-
-    "name": "112233 IPA Library",
+{
+    "name": "makebl IPA Library",
     "identifier": "xyz.hieuddo.ipalibrary",
     "sourceURL": "https://raw.githubusercontent.com/makebl/test/main/test.json",
     "apps": [
-{
+        {
             "name": "微信多开1",
-            "bundleIdentifier": "com.tencent.xin_1",
-            "version": "8.0.43",
+            "bundleIdentifier": "com.chatgtp.gpt-3.Chat-GPT",
+            "version": "2.252",
             "versionDate": "2023-11-30",
-            "size": 68062111,
-            "downloadURL": "http://2280.eu.org:5244/d/%E5%B7%A8%E9%AD%94%E8%87%AA%E7%AD%BEipa/%E5%BE%AE%E4%BF%A1%E5%A4%9A%E5%BC%80/%E5%BE%AE%E4%BF%A1_8.0.43_1701159406%40com.tencent.xin_1.ipa?sign=DVIGi2bN1oE3LbCeIm5Ih9YvEdzDbD2xyDOIcESwNa8=:0",
+            "size": 34025790,
+            "downloadURL": "http://2280.eu.org:5244/d/%E5%B7%A8%E9%AD%94%E8%87%AA%E7%AD%BEipa/%E5%BE%AE%E4%BF%A1%E5%A4%9A%E5%BC%80/%E5%BE%AE%E4%BF%A1_8.0.43_1701159406%40com.tencent.xin_1.ipa?sign=DVIGi2bN1oE3LbCeIm5Ih9YvEdzDbD2xyDOIcESw",
             "developerName": "",
             "localizedDescription": "",
-            "iconURL": "https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/icons/net.whatsapp.WhatsApp.png"
+            "iconURL": "https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/icons/com.chatgtp.gpt-3.Chat-GPT.png",
         },
-{
-            "name": "微信多开2",
-            "bundleIdentifier": "com.tencent.xin_1",
-            "version": "8.0.43",
-            "versionDate": "2023-11-30",
-            "size": 68062222,
-            "downloadURL": "http://2280.eu.org:5244/d/%E5%B7%A8%E9%AD%94%E8%87%AA%E7%AD%BEipa/%E5%BE%AE%E4%BF%A1%E5%A4%9A%E5%BC%80/%E5%BE%AE%E4%BF%A1_8.0.43_1701159406%40com.tencent.xin_2.ipa?sign=DVIGi2bN1oE3LbCeIm5Ih9YvEdzDbD2xyDOIcESwNa8=:0",
+
+        {
+            "name": "YoutubeReborn",
+            "bundleIdentifier": "com.google.ios.youtube",
+            "version": "1.0",
+            "versionDate": "2022-11-10",
+            "size": 129661988,
+            "downloadURL": "https://github.com/swaggyP36000/TrollStore-IPAs/releases/download/11-09-2022/YoutubeReborn.ipa",
             "developerName": "",
             "localizedDescription": "",
-            "iconURL": "https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/icons/net.whatsapp.WhatsApp.png"
-        },
-{
-            "name": "微信多开3",
-            "bundleIdentifier": "com.tencent.xin_1",
-            "version": "8.0.43",
-            "versionDate": "2023-11-30",
-            "size": 68062333,
-            "downloadURL": "http://2280.eu.org:5244/d/%E5%B7%A8%E9%AD%94%E8%87%AA%E7%AD%BEipa/%E5%BE%AE%E4%BF%A1%E5%A4%9A%E5%BC%80/%E5%BE%AE%E4%BF%A1_8.0.43_1701159406%40com.tencent.xin_3.ipa?sign=DVIGi2bN1oE3LbCeIm5Ih9YvEdzDbD2xyDOIcESwNa8=:0",
-            "developerName": "",
-            "localizedDescription": "",
-            "iconURL": "https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/icons/net.whatsapp.WhatsApp.png"
-        },
-{
-            "name": "微信多开4",
-            "bundleIdentifier": "com.tencent.xin_1",
-            "version": "8.0.43",
-            "versionDate": "2023-11-30",
-            "size": 68062444,
-            "downloadURL": "http://2280.eu.org:5244/d/%E5%B7%A8%E9%AD%94%E8%87%AA%E7%AD%BEipa/%E5%BE%AE%E4%BF%A1%E5%A4%9A%E5%BC%80/%E5%BE%AE%E4%BF%A1_8.0.43_1701159406%40com.tencent.xin_4.ipa?sign=DVIGi2bN1oE3LbCeIm5Ih9YvEdzDbD2xyDOIcESwNa8=:0",
-            "developerName": "",
-            "localizedDescription": "",
-            "iconURL": "https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/icons/net.whatsapp.WhatsApp.png"
+            "iconURL": "https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/icons/com.google.ios.youtube.png"
         }
     ]
 }
