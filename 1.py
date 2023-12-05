@@ -1,4 +1,11 @@
 import json
+import requests
+
+def download_remote_file(remote_url, local_path):
+    response = requests.get(remote_url)
+    if response.status_code == 200:
+        with open(local_path, 'wb') as local_file:
+            local_file.write(response.content)
 
 def merge_libraries(library1, library2):
     apps1 = library1.get('apps', [])
@@ -9,24 +16,27 @@ def merge_libraries(library1, library2):
     return merged_library
 
 def main():
-    file1_path = 'test.json'
-    file2_path = 'apps.json'
+    remote_url = 'https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/apps.json'
+    local_path = 'apps.json'
+    
+    # Download remote file
+    download_remote_file(remote_url, local_path)
 
-    # Ensure test.json exists and is not empty
+    # Continue with your existing merge logic
     try:
-        with open(file1_path, 'r', encoding='utf-8') as test_file:
+        with open('test.json', 'r', encoding='utf-8') as test_file:
             test_content = json.load(test_file)
             if 'apps' not in test_content:
                 test_content['apps'] = []
     except (json.JSONDecodeError, FileNotFoundError) as e:
-        print(f"Error loading {file1_path}: {e}")
+        print(f"Error loading test.json: {e}")
         test_content = {'apps': []}
 
     try:
-        with open(file2_path, 'r', encoding='utf-8') as file2:
+        with open(local_path, 'r', encoding='utf-8') as file2:
             library2 = json.load(file2)
     except (json.JSONDecodeError, FileNotFoundError) as e:
-        print(f"Error loading {file2_path}: {e}")
+        print(f"Error loading {local_path}: {e}")
         library2 = {'apps': []}
 
     merged_library = merge_libraries(test_content, library2)
@@ -34,11 +44,6 @@ def main():
     with open('merged_library.json', 'w', encoding='utf-8') as merged_file:
         json.dump(merged_library, merged_file, ensure_ascii=False, indent=4)
 
-    # Output information to a file
-    with open('output_info.txt', 'w', encoding='utf-8') as output_info:
-        output_info.write('Merged library successfully.')
-
-    # Add debug output to the console
     print('Merged library successfully.')
     print(f'Contents of merged_library: {merged_library}')
 
