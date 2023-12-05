@@ -33,9 +33,18 @@ jobs:
         fi
 
 
-    - name: Run Python Script
+    - name: Debug Script
       run: |
+        ls -al  # 列出当前目录下的文件，确保文件存在
+        cat test.json  # 输出 test.json 内容
+        cat apps.json  # 输出 apps.json 内容
+ 
         python 1.py
+
+
+        cat merged_library.json
+        working-directory: ${{ github.workspace }}
+
         
     - name: Telegram通知
       run: |
